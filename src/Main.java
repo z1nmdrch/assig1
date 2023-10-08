@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         System.out.println("What do you want to purchase?");
+        System.out.println("-------------------------------");
         Devica devica1 = new Devica("Laptop", 1000.0);
         Devica devica2 = new Devica("Smartphone", 500.0);
         Devica devica3 = new Devica("Headphones", 50.0);
@@ -16,8 +17,9 @@ public class Main {
         cart.addDevica(discountedLaptop);
 
         Scanner sc = new Scanner(System.in);
+        int want = sc.nextInt();
         while (true) {
-            int want = sc.nextInt();
+
 
             if (want == 0) {
                 break;
@@ -40,6 +42,7 @@ public class Main {
         System.out.println("Enter the product number you want to remove (1, 2, 3):");
         System.out.println("Click any other number to cancel the remove");
         int productToRemove = sc.nextInt();
+
         switch (productToRemove) {
             case 1:
                 cart.removeDevica(devica1);

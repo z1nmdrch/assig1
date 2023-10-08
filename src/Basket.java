@@ -26,6 +26,7 @@ public class Basket {
             total += product.getPrice();
         }
         return total;
+
     }
 
     public void checkout() {
