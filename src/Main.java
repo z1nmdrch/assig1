@@ -3,15 +3,18 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         System.out.println("What do you want to purchase?");
-        Product product1 = new Product("Laptop", 1000.0);
-        Product product2 = new Product("Smartphone", 500.0);
-        Product product3 = new Product("Headphones", 50.0);
+        Devica devica1 = new Devica("Laptop", 1000.0);
+        Devica devica2 = new Devica("Smartphone", 500.0);
+        Devica devica3 = new Devica("Headphones", 50.0);
         System.out.println("1.Laptop - 1000$");
         System.out.println("2.Smartphone - 500$");
         System.out.println("3.Headphone - 50$");
 
+        Basket cart = Basket.getInstance();
 
-        ShoppingCart cart = new ShoppingCart();
+        DevicaDecorator discountedLaptop = new DiscountDecorator(devica1, 0.10);
+        cart.addDevica(discountedLaptop);
+
         Scanner sc = new Scanner(System.in);
         while (true) {
             int want = sc.nextInt();
@@ -22,13 +25,13 @@ public class Main {
 
             switch (want) {
                 case 1:
-                    cart.addProduct(product1);
+                    cart.addDevica(devica1);
                     break;
                 case 2:
-                    cart.addProduct(product2);
+                    cart.addDevica(devica2);
                     break;
                 case 3:
-                    cart.addProduct(product3);
+                    cart.addDevica(devica3);
                     break;
                 default:
                     System.out.println("Invalid choice. Try again.");
@@ -39,19 +42,19 @@ public class Main {
         int productToRemove = sc.nextInt();
         switch (productToRemove) {
             case 1:
-                cart.removeProduct(product1);
+                cart.removeDevica(devica1);
                 break;
             case 2:
-                cart.removeProduct(product2);
+                cart.removeDevica(devica2);
                 break;
             case 3:
-                cart.removeProduct(product3);
+                cart.removeDevica(devica3);
                 break;
             default:
                 System.out.println("Excellent");
         }
         cart.checkout();
         double total = cart.calculateTotal();
-        System.out.println("Updated Total: $" + total);
+        System.out.println("Тo be paid: $" + total);
     }
 }
